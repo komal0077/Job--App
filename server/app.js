@@ -9,6 +9,10 @@ import applicationRouter from './routes/applicationRouter.js'
 import {dbConnection} from './database/dbConnection.js'
 import {handleErrors} from './middlewares/error.js'
 import {User} from './models/userSchema.js'
+import path from 'path';
+import { fileURLToPath } from "url";
+const __filename=fileURLToPath(import.meta.url)
+const __dirname=path.dirname(__filename)
 
 const app=express();
 dotenv.config({path : "./config/config.env"});
@@ -35,8 +39,14 @@ app.use("/api/v1/user",userRouter);
 app.use("/api/v1/application",applicationRouter);
 app.use("/api/v1/job",jobRouter)
 
+// app.use(express.static(path.join(__dirname,"/client/dist")))
+// app.get("*",(req,res)=>
+//     res.sendFile(path.join(__dirname,"/client/dist/index.html"))
+// )
+
 dbConnection();
 
 app.use(handleErrors);
 
 export default app;
+

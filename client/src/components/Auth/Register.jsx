@@ -24,7 +24,7 @@ const {isAuthorized,setIsAuthorized,user,setUser}=useContext(Context);
 const handleRegister=async (e)=>{
   e.preventDefault();
   try{
-const {data}=await axios.post("http://localhost:4000/api/v1/user/register"
+const {data}=await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/user/register`
   ,
   {name,email,password,phone,role}
   ,{withCredentials:true,
